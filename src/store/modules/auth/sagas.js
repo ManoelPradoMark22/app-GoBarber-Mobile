@@ -35,6 +35,10 @@ export function* signIn({ payload }) {
     // api.defaults.headers.['Authorization'] = `Bearer ${token}`;
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
+    /* o delay é so pra testar o loading do botao!
+    caso queira faça o importe do delay em 'redux-saga/effects'
+    yield delay(3000); */
+
     yield put(signInSuccess(token, user));
 
     // history.push('/dashboard');
@@ -58,7 +62,8 @@ export function* signUp({ payload }) {
       email,
       password,
     });
-    Alert.alert(`Usuário "${name}" cadastrado com sucesso!`);
+
+    Alert.alert(`Sucesso ${name}! Cadastro concluído!`);
     // history.push('/');
   } catch (err) {
     Alert.alert(
