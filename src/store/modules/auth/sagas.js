@@ -27,6 +27,7 @@ export function* signIn({ payload }) {
         'Erro no Login',
         'Prestador de serviços, utilize a versão WEB ao invés da Mobile!'
       );
+      yield put(signFailure());
       return;
     }
 
@@ -45,7 +46,7 @@ export function* signIn({ payload }) {
   } catch (err) {
     Alert.alert(
       'Falha na autenticação',
-      'Ocorreu um erro no login, verifique seus dados!'
+      'Ocorreu um erro ao tentar efetuar o login, verifique seus dados!'
     );
     yield put(signFailure());
   } finally {
@@ -72,7 +73,7 @@ export function* signUp({ payload }) {
   } catch (err) {
     Alert.alert(
       'Falha no cadastro',
-      'Ocorreu um erro no cadastro, verifique seus dados!'
+      'Ocorreu um erro ao tentar cadastrar o usuário, verifique seus dados!'
     );
     yield put(signFailure());
   } finally {

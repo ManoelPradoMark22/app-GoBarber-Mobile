@@ -18,8 +18,6 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.signed = true;
         break;
       }
-      /* neste reducer de auth estamos armazenando apenas o token , a informacao
-        se o usuario esta logado ou nao, e a informacao de loading ou nao */
       case '@auth/SIGN_UP_REQUEST': {
         draft.loading = true;
         break;
