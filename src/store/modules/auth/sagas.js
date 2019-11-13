@@ -1,7 +1,7 @@
+import { Alert } from 'react-native';
 import { takeLatest, call, put, all } from 'redux-saga/effects';
-import { toast } from 'react-toastify';
 
-import history from '~/services/history';
+// import history from '~/services/history';
 import api from '~/services/api';
 
 import { signInSuccess, signFailure } from './actions';
@@ -22,9 +22,11 @@ export function* signIn({ payload }) {
 
     const { token, user } = response.data;
 
-    if (!user.provider) {
-      // console.tron.error('Usuário não é um prestador!');
-      toast.error('Usuário não é um prestador!');
+    if (user.provider) {
+      Alert.alert(
+        'Erro no Login',
+        'Prestador de serviços, utilize a versão WEB ao invés da Mobile!'
+      );
       return;
     }
 
@@ -35,9 +37,12 @@ export function* signIn({ payload }) {
 
     yield put(signInSuccess(token, user));
 
-    history.push('/dashboard');
+    // history.push('/dashboard');
   } catch (err) {
-    toast.error('Falha na autenticação, verifique seus dados!');
+    Alert.alert(
+      'Falha na autenticação',
+      'Ocorreu um erro no login, verifique seus dados!'
+    );
   } finally {
     yield put(signFailure());
   }
@@ -54,10 +59,13 @@ export function* signUp({ payload }) {
       password,
       provider: true,
     });
-    toast.success(`Usuário "${name}" cadastrado com sucesso!`);
-    history.push('/');
+    Alert.alert(`Usuário "${name}" cadastrado com sucesso!`);
+    // history.push('/');
   } catch (err) {
-    toast.error('Falha no cadastro, verifique seus dados!');
+    Alert.alert(
+      'Falha no cadastro',
+      'Ocorreu um erro no cadastro, verifique seus dados!'
+    );
 
     yield put(signFailure());
   }
@@ -75,7 +83,7 @@ export function setToken({ payload }) {
 }
 
 export function signOut() {
-  history.push('/');
+  // history.push('/');
 }
 
 export default all([
