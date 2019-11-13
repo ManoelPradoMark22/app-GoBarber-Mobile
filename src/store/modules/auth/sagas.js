@@ -57,7 +57,6 @@ export function* signUp({ payload }) {
       name,
       email,
       password,
-      provider: true,
     });
     Alert.alert(`Usuário "${name}" cadastrado com sucesso!`);
     // history.push('/');
