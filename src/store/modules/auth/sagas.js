@@ -4,7 +4,7 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 // import history from '~/services/history';
 import api from '~/services/api';
 
-import { signInSuccess, signFailure } from './actions';
+import { signInSuccess, signFailure, signUpSuccess, loadOff } from './actions';
 
 export function* signIn({ payload }) {
   try {
@@ -47,8 +47,9 @@ export function* signIn({ payload }) {
       'Falha na autenticação',
       'Ocorreu um erro no login, verifique seus dados!'
     );
-  } finally {
     yield put(signFailure());
+  } finally {
+    yield put(loadOff());
   }
 }
 
@@ -62,16 +63,20 @@ export function* signUp({ payload }) {
       email,
       password,
     });
-
-    Alert.alert(`Sucesso ${name}! Cadastro concluído!`);
+    yield put(signUpSuccess());
+    Alert.alert(
+      'Cadastro concluído',
+      `${name}, agora faça login para acessar a aplicação.`
+    );
     // history.push('/');
   } catch (err) {
     Alert.alert(
       'Falha no cadastro',
       'Ocorreu um erro no cadastro, verifique seus dados!'
     );
-
     yield put(signFailure());
+  } finally {
+    yield put(loadOff());
   }
 }
 

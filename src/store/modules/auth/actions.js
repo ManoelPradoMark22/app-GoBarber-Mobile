@@ -19,9 +19,21 @@ export function signUpRequest(name, email, password) {
   };
 }
 
+export function signUpSuccess() {
+  return {
+    type: '@auth/SIGN_UP_SUCCESS',
+  };
+}
+
 export function signFailure() {
   return {
     type: '@auth/SIGN_FAILURE',
+  };
+}
+
+export function loadOff() {
+  return {
+    type: '@auth/LOAD_OFF',
   };
 }
 
