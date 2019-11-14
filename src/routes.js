@@ -3,12 +3,30 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 mudar navegar entre elas, apenas a partir de um botao (é o que queremos
 para as telas de login e cadastro!) */
 
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
-export default createAppContainer(
-  createSwitchNavigator({
-    SignIn,
-    SignUp,
-  })
-);
+import Dashboard from './pages/Dashboard';
+
+/* Vamos exportar uma função pq a chamada das rotas dependerá da variavel signedIn */
+export default (signedIn = false) =>
+  createAppContainer(
+    createSwitchNavigator(
+      {
+        Sign: createSwitchNavigator({
+          /* CONJUNTO DE ROTAS P QND O USER 'NÃO ESTIVER' LOGADO NO APP */
+          SignIn,
+          SignUp,
+        }),
+        App: createBottomTabNavigator({
+          /* CONJUNTO DE ROTAS P QND O USER 'ESTIVER' LOGADO NO APP */
+          Dashboard,
+        }),
+      },
+      {
+        initialRouteName: signedIn ? 'App' : 'Sign',
+      }
+    )
+  );
