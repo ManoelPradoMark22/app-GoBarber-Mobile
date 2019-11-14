@@ -7,7 +7,7 @@ const api = axios.create({
   /* Dispositivo físico:  usa o ip da sua rede
   (meu pc) -> baseURL: 'http://10.0.0.161:3333'
   (meu notebook) -> baseURL: 'http://10.0.1.235:3333' */
-  baseURL: 'http://10.0.0.161:3333',
+  baseURL: 'http://10.0.1.235:3333',
 });
 
 export default api;
