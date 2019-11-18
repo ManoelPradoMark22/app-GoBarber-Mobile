@@ -7,12 +7,10 @@ import { updateProfileSuccess, updateProfileFailure } from './actions';
 
 export function* updateProfile({ payload }) {
   try {
-    const { name, email, avatar_id, ...rest } = payload.data;
+    const { name, email, ...rest } = payload.data;
 
     /* - Usando spread-operator: */
-    const profile = rest.oldPassword
-      ? { ...payload.data }
-      : { name, email, avatar_id };
+    const profile = rest.oldPassword ? { ...payload.data } : { name, email };
     /* usando Object.assign( ) , serve tb p/ unir dois objetos:
     const profile = Object.assign(
       { name, email },
