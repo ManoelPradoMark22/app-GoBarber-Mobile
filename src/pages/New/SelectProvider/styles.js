@@ -5,6 +5,14 @@ export const Container = styled.View`
   flex: 1;
 `;
 
+export const Title = styled.Text`
+  font-size: 20px;
+  color: #fff;
+  font-weight: bold;
+  align-self: center;
+  margin-top: 14px;
+`;
+
 export const ProvidersList = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
   numColumns: 2,

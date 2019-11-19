@@ -5,7 +5,14 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '~/services/api';
 
 import Background from '~/components/Background';
-import { Container, ProvidersList, Provider, Avatar, Name } from './styles';
+import {
+  Container,
+  Title,
+  ProvidersList,
+  Provider,
+  Avatar,
+  Name,
+} from './styles';
 
 export default function SelectProvider({ navigation }) {
   const [providers, setProviders] = useState([]);
@@ -23,6 +30,7 @@ export default function SelectProvider({ navigation }) {
   return (
     <Background>
       <Container>
+        <Title>Selecione o prestador</Title>
         <ProvidersList
           data={providers}
           keyExtractor={provider => String(provider.id)}
@@ -49,9 +57,8 @@ export default function SelectProvider({ navigation }) {
 }
 
 SelectProvider.navigationOptions = ({ navigation }) => ({
-  /* se colocar direto ele fica um pouco pra esquerda no android
+  /* se colocar direto ele fica um pouco pra esquerda no android (ñ fica centralizado)
   title: 'Selecione o prestador', */
-  title: 'Selecione o prestador',
   headerLeft: () => (
     <TouchableOpacity
       onPress={() => {
