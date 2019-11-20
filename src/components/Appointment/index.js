@@ -20,7 +20,7 @@ export default function Appointment({ data, onCancel }) {
         <Avatar
           source={{
             uri: data.provider.avatar
-              ? data.provider.avatar.url.replace('localhost', '10.0.0.161')
+              ? data.provider.avatar.url.replace('localhost', '10.0.1.235')
               : `https://api.adorable.io/avatar/50/${data.provider.name}.png`,
           }}
         />
