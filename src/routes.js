@@ -15,6 +15,7 @@ um erro. Tem tb a seta acima para voltar */
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import { View } from 'react-native';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
@@ -48,12 +49,21 @@ export default (signedIn = false) =>
                 },
                 {
                   defaultNavigationOptions: {
+                    headerLayoutPreset: 'center',
                     headerTransparent: true,
                     headerTintColor: '#fff',
                     headerLeftContainerStyle: {
                       marginLeft: 20,
                     },
-                    headerLayoutPreset: 'center',
+                    headerTitleStyle: {
+                      flexGrow: 1,
+                      flex: 1,
+                      fontWeight: 'bold',
+                      textAlign: 'center',
+                      alignSelf: 'center',
+                      justifyContent: 'center',
+                    },
+                    headerRight: <View />,
                   },
                 }
               ),
