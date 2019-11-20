@@ -7,6 +7,8 @@ import api from '~/services/api';
 import Background from '~/components/Background';
 import {
   Container,
+  Header,
+  BoxIcon,
   Title,
   ProvidersList,
   Provider,
@@ -30,7 +32,18 @@ export default function SelectProvider({ navigation }) {
   return (
     <Background>
       <Container>
-        <Title>Selecione o prestador</Title>
+        <Header>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Dashboard');
+            }}
+          >
+            <BoxIcon>
+              <Icon name="chevron-left" size={20} color="#fff" />
+            </BoxIcon>
+          </TouchableOpacity>
+          <Title>Selecione o prestador</Title>
+        </Header>
         <ProvidersList
           data={providers}
           keyExtractor={provider => String(provider.id)}
@@ -56,9 +69,8 @@ export default function SelectProvider({ navigation }) {
   );
 }
 
+/*
 SelectProvider.navigationOptions = ({ navigation }) => ({
-  /* se colocar direto ele fica um pouco pra esquerda no android (ñ fica centralizado)
-  title: 'Selecione o prestador', */
   headerLeft: () => (
     <TouchableOpacity
       onPress={() => {
@@ -69,3 +81,4 @@ SelectProvider.navigationOptions = ({ navigation }) => ({
     </TouchableOpacity>
   ),
 });
+ */
