@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { withNavigationFocus } from 'react-navigation';
+/* retorna algo se a rota recebeu foco (se por exemplo foi redirecionado ou
+  voltado para ela depois de ela já ter sido renderizada) */
 import api from '~/services/api';
 
 import Background from '~/components/Background';
@@ -7,18 +10,24 @@ import Appointment from '~/components/Appointment';
 
 import { Container, Title, List } from './styles';
 
-export default function Dashboard() {
+/* isFocused alterna entre true e false, depende se esta ou nao focado nesta tela */
+function Dashboard({ isFocused }) {
   const [appointments, setAppointments] = useState([]);
 
+  async function loadAppointments() {
+    const response = await api.get('appointments');
+
+    setAppointments(response.data);
+  }
+
+  /* sempre que isFocused alterar, esse useEffect dispara.
+  inclusive no primeiro carregamento da tela! */
   useEffect(() => {
-    async function loadAppointments() {
-      const response = await api.get('appointments');
-
-      setAppointments(response.data);
+    if (isFocused) {
+      /* se recebeu foco, (true) */
+      loadAppointments();
     }
-
-    loadAppointments();
-  }, []);
+  }, [isFocused]);
 
   async function handleCancel(id) {
     const response = await api.delete(`appointments/${id}`);
@@ -58,3 +67,5 @@ Dashboard.navigationOptions = {
     <Icon name="event" size={20} color={tintColor} />
   ),
 };
+
+export default withNavigationFocus(Dashboard);
