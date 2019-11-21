@@ -82,6 +82,7 @@ export default (signedIn = false) =>
             Profile,
           },
           {
+            resetOnBlur: true,
             tabBarOptions: {
               keyboardHidesTabBar: false,
               activeTintColor: '#fff',
