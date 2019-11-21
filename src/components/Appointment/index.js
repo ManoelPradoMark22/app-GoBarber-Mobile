@@ -4,6 +4,7 @@ import pt from 'date-fns/locale/pt';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import { IP_MACHINE } from 'react-native-dotenv';
 import { Container, Left, Avatar, Info, Name, Time } from './styles';
 
 export default function Appointment({ data, onCancel }) {
@@ -20,7 +21,7 @@ export default function Appointment({ data, onCancel }) {
         <Avatar
           source={{
             uri: data.provider.avatar
-              ? data.provider.avatar.url.replace('localhost', '10.0.1.235')
+              ? data.provider.avatar.url.replace('localhost', IP_MACHINE)
               : `https://api.adorable.io/avatar/50/${data.provider.name}.png`,
           }}
         />
