@@ -19,11 +19,7 @@ export default function Confirm({ navigation }) {
   const dateFormatted = useMemo(
     /* parseISO() é para converter para string,
     estamos formatando relativo à data atual */
-    () =>
-      formatRelative(parseISO(time), new Date(), {
-        locale: pt,
-        addSuffix: true,
-      }),
+    () => formatRelative(parseISO(time), new Date(), { locale: pt }),
     [time]
   );
 
