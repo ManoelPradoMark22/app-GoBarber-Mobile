@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 /* RectButton além de ter o efeito de clique do Android e do IOS, também aceita
 a propriedade enabled como true ou false, e se a mesma estiver como false, o
