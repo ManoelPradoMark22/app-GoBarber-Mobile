@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { withNavigationFocus } from 'react-navigation';
 /* retorna algo se a rota recebeu foco (se por exemplo foi redirecionado ou
@@ -30,19 +31,35 @@ function Dashboard({ isFocused }) {
   }, [isFocused]);
 
   async function handleCancel(id) {
-    const response = await api.delete(`appointments/${id}`);
-
-    setAppointments(
-      appointments.map(appointment =>
-        appointment.id === id
-          ? {
-              ...appointment,
-              canceled_at: response.data.canceled_at,
-            }
-          : appointment
-      )
+    Alert.alert(
+      'ATENÇÃO!',
+      'Você quer mesmo excluir este agendamento?',
+      [
+        {
+          text: 'CANCELAR',
+          onPress: () => {},
+          style: 'cancel',
+        },
+        {
+          text: 'CONFIRMAR',
+          onPress: async () => {
+            const response = await api.delete(`appointments/${id}`);
+            setAppointments(
+              appointments.map(appointment =>
+                appointment.id === id
+                  ? {
+                      ...appointment,
+                      canceled_at: response.data.canceled_at,
+                    }
+                  : appointment
+              )
+            );
+            loadAppointments();
+          },
+        },
+      ],
+      { cancelable: true }
     );
-    loadAppointments();
   }
 
   return (
