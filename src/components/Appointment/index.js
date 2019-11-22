@@ -8,6 +8,7 @@ import { IP_MACHINE } from 'react-native-dotenv';
 import { Container, Left, Avatar, Info, Name, Time } from './styles';
 
 export default function Appointment({ data, onCancel }) {
+  // console.tron.log(data.date);
   const dateParsed = useMemo(() => {
     return formatRelative(parseISO(data.date), new Date(), {
       locale: pt,
