@@ -22,3 +22,5 @@ Para a aplicação rodar, execute na raiz deste projeto: "react-native run-andro
 </li>
 
 </ul>
+
+![GIF](gifgobarbermobile.gif)
