@@ -58,7 +58,7 @@ function Dashboard({ isFocused }) {
           },
         },
       ],
-      { cancelable: true }
+      { cancelable: false }
     );
   }
 
