@@ -23,4 +23,6 @@ Para a aplicação rodar, execute na raiz deste projeto: "react-native run-andro
 
 </ul>
 
-![GIF](gifgobarbermobile.gif)
+https://user-images.githubusercontent.com/53825592/163476078-e7305c02-6877-44c9-9043-716c8a07a55d.mp4
+
+
